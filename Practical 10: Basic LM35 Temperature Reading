@@ -1,0 +1,17 @@
+const int lm35Pin = A0; 
+
+void setup() {
+  Serial.begin(9600);   
+}
+
+void loop() {
+  int lm35Value = analogRead(lm35Pin);           
+  float voltage = lm35Value * (5.0 / 1023.0);       
+  float tempLM35 = voltage * 100.0;                
+
+  Serial.print("LM35 Temp: ");
+  Serial.print(tempLM35);
+  Serial.println(" °C");
+
+  delay(2000);
+}

@@ -1,0 +1,20 @@
+int number;   // Variable to store input number
+
+void setup() {
+  Serial.begin(9600);                       
+  while (!Serial);                         
+  Serial.println("Enter a number:");      
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    number = Serial.parseInt();             
+    int result = number * number;          
+
+    Serial.print("Square: ");
+    Serial.println(result);                
+
+    Serial.println("Enter another number:"); 
+    delay(500);                            
+  }
+}

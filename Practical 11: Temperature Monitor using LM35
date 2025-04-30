@@ -1,0 +1,40 @@
+const int lm35Pin = A0;           
+float maxTemp = -1000.0;      
+float minTemp = 1000.0;           
+
+void setup() {
+  Serial.begin(9600);            
+}
+
+void loop() {
+  int sensorValue = analogRead(lm35Pin);            
+  float voltage = sensorValue * (5.0 / 1023.0);      
+  float tempC = voltage * 100.0;                      
+  float tempF = (tempC * 9.0 / 5.0) + 32.0;        
+
+  // Update max and min temperatures
+  if (tempC > maxTemp) {
+    maxTemp = tempC;
+  }
+
+  if (tempC < minTemp) {
+    minTemp = tempC;
+  }
+
+  // Display data
+  Serial.print("Current Temp: ");
+  Serial.print(tempC);
+  Serial.print(" °C / ");
+  Serial.print(tempF);
+  Serial.println(" °F");
+
+  Serial.print("Max Temp: ");
+  Serial.println(maxTemp);
+
+  Serial.print("Min Temp: ");
+  Serial.println(minTemp);
+
+  Serial.println("---------------");
+
+  delay(1000);   
+}

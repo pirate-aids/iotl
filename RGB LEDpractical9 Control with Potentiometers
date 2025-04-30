@@ -1,0 +1,35 @@
+// Potentiometer analog input pins
+const int redPotPin = A0;
+const int greenPotPin = A1;
+const int bluePotPin = A2;
+
+// RGB LED PWM output pins
+const int redLEDPin = 9;
+const int greenLEDPin = 10;
+const int blueLEDPin = 11;
+
+void setup() {
+  // Set LED pins as output
+  pinMode(redLEDPin, OUTPUT);
+  pinMode(greenLEDPin, OUTPUT);
+  pinMode(blueLEDPin, OUTPUT);
+}
+
+void loop() {
+  // Read analog values from potentiometers
+  int redValue = analogRead(redPotPin);
+  int greenValue = analogRead(greenPotPin);
+  int blueValue = analogRead(bluePotPin);
+
+  // Map 0–1023 analog values to 0–255 PWM range
+  redValue = map(redValue, 0, 1023, 0, 255);
+  greenValue = map(greenValue, 0, 1023, 0, 255);
+  blueValue = map(blueValue, 0, 1023, 0, 255);
+
+  // Write PWM values to the RGB LED
+  analogWrite(redLEDPin, redValue);
+  analogWrite(greenLEDPin, greenValue);
+  analogWrite(blueLEDPin, blueValue);
+
+  delay(10); // Small delay for smoother control
+}

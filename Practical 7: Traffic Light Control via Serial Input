@@ -1,0 +1,39 @@
+char input;  // To store serial input
+
+void setup() {
+  Serial.begin(9600);        // Start serial communication
+
+  pinMode(7, OUTPUT);        // Green LED
+  pinMode(8, OUTPUT);        // Yellow LED
+  pinMode(9, OUTPUT);        // Red LED
+
+  Serial.println("Enter G for Green, Y for Yellow, R for Red:");
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    input = Serial.read();  
+
+    // Turn off all LEDs first
+    digitalWrite(7, LOW);  
+    digitalWrite(8, LOW);  
+    digitalWrite(9, LOW);  
+
+    // Control LEDs based on input
+    if (input == 'G' || input == 'g') {
+      digitalWrite(7, HIGH);  
+      Serial.println("Green LED ON");
+    } 
+    else if (input == 'Y' || input == 'y') {
+      digitalWrite(8, HIGH); 
+      Serial.println("Yellow LED ON");
+    } 
+    else if (input == 'R' || input == 'r') {
+      digitalWrite(9, HIGH);   
+      Serial.println("Red LED ON");
+    } 
+    else {
+      Serial.println("Invalid input. Use G, Y, or R.");
+    }
+  }
+}

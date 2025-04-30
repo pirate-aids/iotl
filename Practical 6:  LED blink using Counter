@@ -1,0 +1,39 @@
+int counter = 0;
+
+void setup() {
+  pinMode(7, OUTPUT);  // Green LED
+  pinMode(8, OUTPUT);  // Yellow LED
+  pinMode(9, OUTPUT);  // Red LED
+}
+
+void loop() {
+  counter = counter + 50;
+
+  // Reset counter after red is triggered
+  if (counter > 300) {
+    counter = 0;
+    digitalWrite(7, LOW);
+    digitalWrite(8, LOW);
+    digitalWrite(9, LOW);
+  }
+
+  if (counter == 100) {
+    digitalWrite(7, HIGH);  // Green ON
+    delay(500);
+    digitalWrite(7, LOW);
+  }
+
+  if (counter == 200) {
+    digitalWrite(8, HIGH);  // Yellow ON
+    delay(500);
+    digitalWrite(8, LOW);
+  }
+
+  if (counter == 300) {
+    digitalWrite(9, HIGH);  // Red ON
+    delay(500);
+    digitalWrite(9, LOW);
+  }
+
+  delay(1000); // Main delay between counter updates
+}

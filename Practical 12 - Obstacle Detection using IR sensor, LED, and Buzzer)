@@ -1,0 +1,26 @@
+int irSensor = 2;        
+int ledPin = 7;          
+int buzzerPin = 6;       
+
+void setup() {
+  pinMode(irSensor, INPUT);       
+  pinMode(ledPin, OUTPUT);        
+  pinMode(buzzerPin, OUTPUT);     
+  Serial.begin(9600);             
+}
+
+void loop() {
+  int obstacle = digitalRead(irSensor);  
+
+  if (obstacle == LOW) {  // Object detected (LOW means detection for many IR sensors)
+    digitalWrite(ledPin, HIGH);       
+    digitalWrite(buzzerPin, HIGH);    
+    Serial.println("Obstacle detected!");
+  } else {
+    digitalWrite(ledPin, LOW);        
+    digitalWrite(buzzerPin, LOW);     
+    Serial.println("No obstacle.");
+  }
+
+  delay(200);  // Delay for 200 milliseconds
+}
